@@ -18,19 +18,7 @@ public final class PersistenceController {
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
-        } else if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroup.identifier) {
-            let storeURL = appGroupURL.appendingPathComponent("ThreatLine.sqlite")
-            container.persistentStoreDescriptions.first?.url = storeURL
-        } else {
-            // Falls back to the default (non-shared) location. If this ever
-            // happens in production it means the App Group capability isn't
-            // configured on this target — see Docs/SETUP.md. The app still
-            // works for that target alone; it just won't share data with the
-            // widget/share extension until the capability is fixed.
-            assertionFailure("App Group container unavailable — check the App Group capability on this target.")
         }
-
-        container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 
         container.loadPersistentStores { _, error in
             if let error {
