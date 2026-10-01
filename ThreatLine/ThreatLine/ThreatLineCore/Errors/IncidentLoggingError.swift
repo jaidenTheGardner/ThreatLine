@@ -1,18 +1,17 @@
 import Foundation
 
-/// Errors the security contact can encounter while logging a new suspicious
-/// incident — whether typed manually or captured via the Share Extension.
+// Errors the security contact can encounter while logging a new suspicious
+// incident.
 public enum IncidentLoggingError: LocalizedError, Equatable {
-    /// The content field was left blank.
+    // The content field was left blank.
     case emptyContentSubmitted
 
-    /// The same content was already logged as an open incident — protects
-    /// against the same forwarded phishing email being logged twice by
-    /// accident (e.g. shared once from Mail, then again from a Slack
-    /// forward of the same email).
+    // The same content was already logged as an open incident. This
+    // protects against the same forwarded phishing email being logged
+    // twice by accident.
     case duplicateIncidentDetected(existingIncidentID: UUID)
 
-    /// The underlying store could not be reached or written to.
+    // The underlying store could not be reached or written to.
     case incidentStoreUnavailable(reason: String)
 
     public var errorDescription: String? {

@@ -1,9 +1,7 @@
 import Foundation
 
-/// Where the security contact (or a colleague who forwarded it to them)
-/// encountered the suspicious content — matters because different channels
-/// carry different real-world risk profiles (a spoofed SMS vs. a spoofed
-/// internal Slack message imply different response playbooks).
+// Where the suspicious content was encountered. This matters because different
+// channels carry different real-world risk profiles.
 public enum ReportSourceChannel: String, CaseIterable, Codable, Sendable {
     case email
     case textMessage

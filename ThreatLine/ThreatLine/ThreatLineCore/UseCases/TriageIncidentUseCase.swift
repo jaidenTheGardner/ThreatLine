@@ -1,21 +1,19 @@
 import Foundation
 
-/// Moves an incident through its triage lifecycle: promoting a pending
-/// shared report into a fully-tracked open incident, escalating it, or
-/// closing it out as resolved or a false positive.
-///
-/// Business operation, in plain English: whenever the security contact
-/// decides "this incident's situation has changed," that decision must be
-/// valid for where the incident currently is (you can't close something that
-/// hasn't been reviewed yet, and you can't close it without saying why), and
-/// it must leave a timestamped record of what changed.
+// Moves an incident through its triage lifecycle: promoting a pending
+// shared report into a fully-tracked open incident, escalating it, or
+// closing it out as resolved or a false positive.
+//
+// Business operation: Whenever the security contact decides the incident's
+// situation has changed, that decision must be valid for where the incident
+// currently is  and it must leave a timestamped record of what changed.
 public struct TriageIncidentUseCase {
     private let repository: IncidentRepository
 
-    /// Business Rule: the only status changes permitted from each starting
-    /// status — a `.pendingReview` report must become `.open` (or be
-    /// dismissed as `.falsePositive`) before it can ever be `.escalated` or
-    /// `.resolved`.
+    // Business Rule: the only status changes permitted from each starting
+    // status — a `.pendingReview` report must become `.open` (or be
+    // dismissed as `.falsePositive`) before it can ever be `.escalated` or
+    // `.resolved`.
     private static let allowedTransitions: [IncidentStatus: Set<IncidentStatus>] = [
         .pendingReview: [.open, .falsePositive],
         .open: [.escalated, .resolved, .falsePositive],
@@ -26,15 +24,14 @@ public struct TriageIncidentUseCase {
         self.repository = repository
     }
 
-    /// - Parameters:
-    ///   - updatedSeverity/updatedThreatCategory: optional corrections applied
-    ///     at the same time as the status change — primarily used when
-    ///     promoting a `.pendingReview` report (captured with placeholder
-    ///     values by the Share Extension) into a fully triaged `.open` incident.
-    ///   - resolutionNotes: required when `newStatus` is `.resolved` or
-    ///     `.falsePositive` (see `TriageError.resolutionNotesRequired`).
-    /// - Throws: `TriageError` for any invalid request — see cases for what
-    ///   each communicates to the security contact.
+    // - Parameters:
+    //   - updatedSeverity/updatedThreatCategory: optional corrections applied
+    //     at the same time as the status change. Primarily used when
+    //     promoting a `.pendingReview` report into a fully triaged `.open`
+    //     incident.
+    //   - resolutionNotes: required when `newStatus` is `.resolved` or
+    //     `.falsePositive`.
+    // - Throws: `TriageError` for any invalid request
     @discardableResult
     public func execute(
         incidentID: UUID,

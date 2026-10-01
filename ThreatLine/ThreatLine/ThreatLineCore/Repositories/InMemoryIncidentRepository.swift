@@ -1,9 +1,7 @@
 import Foundation
 
-/// A mock `IncidentRepository` backed by in-memory arrays, protected by an
-/// actor so it's safe under Swift concurrency. Used by unit tests (per
-/// Requirement 5: "Tests must use a mock repository — not the real Core Data
-/// stack") and by SwiftUI previews.
+// A mock `IncidentRepository` backed by in-memory arrays, protected by an
+// actor so it's safe under Swift concurrency. 
 public actor InMemoryIncidentRepository: IncidentRepository {
     public enum Mode: Sendable {
         case normal
@@ -63,8 +61,6 @@ public actor InMemoryIncidentRepository: IncidentRepository {
         }
     }
 }
-
-// MARK: - Fixtures shared by tests and previews
 
 public extension SuspiciousIncident {
     static func fixture(

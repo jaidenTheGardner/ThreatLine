@@ -1,7 +1,6 @@
 import Foundation
 
-/// Errors the security contact can encounter while triaging (updating the
-/// status of) an incident.
+// Errors the security contact can encounter while triaging an incident.
 public enum TriageError: LocalizedError, Equatable {
     case incidentNotFound(id: UUID)
     case incidentAlreadyResolved

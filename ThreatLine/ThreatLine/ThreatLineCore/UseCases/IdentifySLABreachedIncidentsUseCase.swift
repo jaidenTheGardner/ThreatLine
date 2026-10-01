@@ -1,12 +1,10 @@
 import Foundation
 
-/// Identifies which open incidents have breached their severity-based SLA
-/// window — the query that powers both the widget's "SLA breach" badge and
-/// an in-app dashboard alert.
-///
-/// Business operation, in plain English: out of everything still open, which
-/// ones has the security contact now run out of time on? This is what turns
-/// a passive list into something that tells them when they need to act.
+// Identifies which open incidents have breached their severity-based SLA
+// window.
+//
+// Business operation: Turns a passive list into an active list that details
+// where action is needed.
 public struct IdentifySLABreachedIncidentsUseCase {
     private let repository: IncidentRepository
 
@@ -14,8 +12,8 @@ public struct IdentifySLABreachedIncidentsUseCase {
         self.repository = repository
     }
 
-    /// - Throws: `IncidentQueryError.incidentStoreUnavailable` if the
-    ///   incidents can't be read.
+    // - Throws: `IncidentQueryError.incidentStoreUnavailable` if the
+    //   incidents can't be read.
     public func execute(asOf now: Date = Date()) async throws -> [SuspiciousIncident] {
         let openIncidents: [SuspiciousIncident]
         do {

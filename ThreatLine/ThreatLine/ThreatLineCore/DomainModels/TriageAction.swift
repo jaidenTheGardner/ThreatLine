@@ -1,11 +1,9 @@
 import Foundation
 
-/// A single recorded step in a `SuspiciousIncident`'s triage history — one
-/// status change, made by the security contact at a point in time. The
-/// related entity to `SuspiciousIncident` in the persistence schema
-/// (one incident has many triage actions), giving the Incident Detail screen
-/// a full audit trail of how an incident was handled, not just its current
-/// state.
+// A singular recorded step in a `SuspiciousIncident`'s triage history.
+// The related entity to `SuspiciousIncident` in the persistence schema
+// (one incident has many triage actions), giving the Incident Detail screen
+// a full audit trail of how an incident was handled.
 public struct TriageAction: Identifiable, Hashable, Codable, Sendable, DomainAuditable {
     public let id: UUID
     public let incidentID: UUID
@@ -30,7 +28,7 @@ public struct TriageAction: Identifiable, Hashable, Codable, Sendable, DomainAud
         self.performedBy = performedBy
     }
 
-    // MARK: DomainAuditable
+    // DomainAuditable
 
     public var recordedAt: Date { performedAt }
     public var recordedBy: String { performedBy }

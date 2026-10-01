@@ -1,6 +1,6 @@
 import Foundation
 
-/// The kind of attack the security contact suspects this content represents.
+// The kind of attack the security contact suspects this content represents.
 public enum ThreatCategory: String, CaseIterable, Codable, Sendable {
     case phishingEmail
     case maliciousLink

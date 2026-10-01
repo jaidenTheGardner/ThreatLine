@@ -1,11 +1,10 @@
 import Foundation
 
-/// How urgently a `SuspiciousIncident` needs the security contact's attention.
-///
-/// Business Rule: severity determines the SLA response window
-/// (`responseWindow`) — the informal deadlines many small organisations'
-/// single security point-of-contact processes adopt in place of a formal SOC's
-/// ticketing SLAs.
+// How urgently a `SuspiciousIncident` needs the security contact's attention.
+//
+// Business Rule: Severity determines the SLA response window. The informal
+// deadlines many small organisations' single security point-of-contact
+// processes adopt in place of a formal SOC's ticketing SLAs.
 public enum IncidentSeverity: String, CaseIterable, Codable, Sendable {
     case critical
     case high
@@ -14,8 +13,8 @@ public enum IncidentSeverity: String, CaseIterable, Codable, Sendable {
 
     public var displayLabel: String { rawValue.capitalized }
 
-    /// Maximum time this incident may remain open before it counts as an SLA
-    /// breach (see `SuspiciousIncident.slaStatus(asOf:)`).
+    // Maximum time this incident may remain open before it counts
+    // as an SLA breach.
     public var responseWindow: TimeInterval {
         switch self {
         case .critical: return 60 * 60        // 1 hour

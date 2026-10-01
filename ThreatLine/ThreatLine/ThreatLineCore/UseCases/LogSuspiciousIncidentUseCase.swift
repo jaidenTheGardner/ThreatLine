@@ -1,14 +1,11 @@
 import Foundation
 
-/// Logs a newly reported suspicious incident — whether typed manually on the
-/// "Log New Incident" screen, or captured via the Share Extension when the
-/// security contact shares a suspicious email/message/link straight from
-/// Mail, Messages, or Safari.
-///
-/// Business operation, in plain English: whenever a possible threat comes to
-/// the security contact's attention, it must become a tracked record with a
-/// timestamp — and the same content shouldn't get logged twice just because
-/// it was forwarded to them through two different channels.
+// Logs a newly reported suspicious incident.
+//
+// Business operation: Whenever a possible threat comes to the security
+// contact's attention, it must become a tracked record with a timestamp
+// and the same content shouldn't get logged twice because it was forwarded
+// to them through two different channels.
 public struct LogSuspiciousIncidentUseCase {
     private let repository: IncidentRepository
 
@@ -16,12 +13,12 @@ public struct LogSuspiciousIncidentUseCase {
         self.repository = repository
     }
 
-    /// - Throws:
-    ///   - `IncidentLoggingError.emptyContentSubmitted` if there's no actual
-    ///     content to log.
-    ///   - `IncidentLoggingError.duplicateIncidentDetected` if the same
-    ///     content is already tracked as an open incident.
-    ///   - `IncidentLoggingError.incidentStoreUnavailable` if persistence fails.
+    // - Throws:
+    //   - `IncidentLoggingError.emptyContentSubmitted` if there's no actual
+    //     content to log.
+    //   - `IncidentLoggingError.duplicateIncidentDetected` if the same
+    //     content is already tracked as an open incident.
+    //   - `IncidentLoggingError.incidentStoreUnavailable` if persistence fails.
     @discardableResult
     public func execute(
         contentSnippet: String,

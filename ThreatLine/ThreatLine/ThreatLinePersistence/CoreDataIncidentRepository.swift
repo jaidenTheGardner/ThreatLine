@@ -1,10 +1,8 @@
 import CoreData
 
-/// The live `IncidentRepository` implementation, backed by Core Data. This is
-/// the only file in the whole app allowed to know `NSManagedObject`,
-/// `NSFetchRequest`, or `NSPredicate` exist — every layer above it (Use
-/// Cases, ViewModels, Views) only ever sees plain `SuspiciousIncident` and
-/// `TriageAction` structs.
+// Live `IncidentRepository` implementation, backed by Core Data. The only
+// file in the app allowed to know `NSManagedObject`, `NSFetchRequest`, or
+// `NSPredicate` exist. 
 public struct CoreDataIncidentRepository: IncidentRepository {
     private let container: NSPersistentContainer
 
@@ -12,7 +10,7 @@ public struct CoreDataIncidentRepository: IncidentRepository {
         self.container = container
     }
 
-    // MARK: - Reads
+    // Reads
 
     public func fetchOpenIncidents() async throws -> [SuspiciousIncident] {
         try await fetch(
@@ -57,7 +55,7 @@ public struct CoreDataIncidentRepository: IncidentRepository {
         }
     }
 
-    // MARK: - Writes
+    // Writes
 
     public func save(_ incident: SuspiciousIncident) async throws {
         let context = container.viewContext
@@ -88,7 +86,7 @@ public struct CoreDataIncidentRepository: IncidentRepository {
         }
     }
 
-    // MARK: - Shared fetch helper
+    // Shared fetch helper
 
     private func fetch(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]) async throws -> [SuspiciousIncident] {
         let context = container.viewContext
@@ -101,10 +99,9 @@ public struct CoreDataIncidentRepository: IncidentRepository {
     }
 }
 
-// MARK: - Managed object <-> domain model mapping
-// Kept next to the repository (not scattered across the codebase) so the
-// translation between Core Data's storage shape and the domain's semantic
-// shape lives in exactly one place.
+// Managed object <-> domain model mapping
+// Kept next to the repository so the translation between Core Data's storage
+// shape and the domain's semantic shape lives in exactly one place.
 
 private extension IncidentEntity {
     func apply(_ incident: SuspiciousIncident) {

@@ -1,10 +1,8 @@
 import Foundation
 
-/// Errors that can occur while querying incidents (e.g. checking for SLA
-/// breaches for the widget). Kept separate from `TriageError`/
-/// `IncidentLoggingError` because a failed read is a different situation for
-/// the security contact than a failed write — nothing they entered is at risk
-/// of being lost.
+// Errors that can occur while querying incidents. Kept separate from `TriageError`/
+// `IncidentLoggingError` because a failed read is a different situation for
+// the security contact than a failed write.
 public enum IncidentQueryError: LocalizedError, Equatable {
     case incidentStoreUnavailable(reason: String)
 

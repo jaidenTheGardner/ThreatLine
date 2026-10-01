@@ -6,8 +6,25 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2F8D4F18306E3B6F00633BC2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2F7526A3306DED040087C54C /* ThreatLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreatLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F8D4F07306E3B6D00633BC2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
+		2F8D4F09306E3B6D00633BC2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		2F8D4F22306E3CFB00633BC2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		2F8D4F24306E3CFB00633BC2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				2F7526A5306DED040087C54C /* ThreatLine */,
+				2F8D4F06306E3B6D00633BC2 /* Frameworks */,
 				2F7526A4306DED040087C54C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +63,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2F8D4F06306E3B6D00633BC2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F8D4F07306E3B6D00633BC2 /* WidgetKit.framework */,
+				2F8D4F09306E3B6D00633BC2 /* SwiftUI.framework */,
+				2F8D4F22306E3CFB00633BC2 /* UserNotifications.framework */,
+				2F8D4F24306E3CFB00633BC2 /* UserNotificationsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -55,6 +84,7 @@
 				2F75269F306DED040087C54C /* Sources */,
 				2F7526A0306DED040087C54C /* Frameworks */,
 				2F7526A1306DED040087C54C /* Resources */,
+				2F8D4F18306E3B6F00633BC2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
