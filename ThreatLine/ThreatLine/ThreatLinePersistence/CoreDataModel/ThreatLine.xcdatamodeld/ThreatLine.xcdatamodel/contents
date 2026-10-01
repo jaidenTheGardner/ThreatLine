@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23504" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="IncidentEntity" representedClassName="IncidentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="contentSnippet" optional="NO" attributeType="String"/>
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="reportedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="resolutionNotes" optional="YES" attributeType="String"/>
+        <attribute name="resolvedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="severity" optional="NO" attributeType="String"/>
+        <attribute name="sourceChannel" optional="NO" attributeType="String"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+        <attribute name="submitterNote" optional="YES" attributeType="String"/>
+        <attribute name="threatCategory" optional="NO" attributeType="String"/>
+        <relationship name="triageActions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriageActionEntity" inverseName="incident" inverseEntity="TriageActionEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="TriageActionEntity" representedClassName="TriageActionEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="actionDescription" optional="NO" attributeType="String"/>
+        <attribute name="changedStatusTo" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="incidentID" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="performedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="performedBy" optional="NO" attributeType="String"/>
+        <relationship name="incident" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IncidentEntity" inverseName="triageActions" inverseEntity="IncidentEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="IncidentEntity" positionX="-63" positionY="-18" width="128" height="209"/>
+        <element name="TriageActionEntity" positionX="153" positionY="-9" width="128" height="119"/>
+    </elements>
+</model>
